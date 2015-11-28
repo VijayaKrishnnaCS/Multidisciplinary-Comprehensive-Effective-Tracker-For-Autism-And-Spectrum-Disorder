@@ -11,5 +11,5 @@ Team:
 1) Hemanth Garlapati
 2) Nishan K A
 3) Vijaya Krishna C S
-4) Vinoth Gopu
+4) Vinoth G
 5) Naveen Kumar K
