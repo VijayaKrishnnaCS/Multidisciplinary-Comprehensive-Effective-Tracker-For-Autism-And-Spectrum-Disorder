@@ -1,0 +1,9 @@
+.landing_body{
+	background-image: url("home_banner.jpg");
+	margin:80px;
+}
+.home_form label,legend,p
+{
+	font-size:21px;
+	color:#343434;
+}
