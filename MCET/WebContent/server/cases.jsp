@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,83 +64,33 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
+                                       <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th></th>
+                                            <th>Case ID</th>
                                             <th>
-                                                Extra small devices
-                                                <small>Phones (&lt;768px)</small>
+                                               Name
                                             </th>
                                             <th>
-                                                Small devices
-                                                <small>Tablets (&ge;768px)</small>
+                                                Contacted By
                                             </th>
                                             <th>
-                                                Medium devices
-                                                <small>Desktops (&ge;992px)</small>
+                                                Phone
                                             </th>
                                             <th>
-                                                Large devices
-                                                <small>Desktops (&ge;1200px)</small>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <s:iterator value="caseItemList" var="case">
                                         <tr>
-                                            <th>Grid behavior</th>
-                                            <td>Horizontal at all times</td>
-                                            <td colspan="3">Collapsed to start, horizontal above breakpoints</td>
+                                            <td><s:property value="#case.id"/></td>
+                                            <td><s:property value="#case.patient.firstName"/> <s:property value="#case.patient.lastName"/></td>
+                                            <td><s:property value="#case.callRequest.name"/></td>
+                                            <td><s:property value="#case.callRequest.phone"/></td>
+                                            <td><a href="edit_case?callRequest.id=<s:property value="#request.id"/>&caseItem.id=<s:property value="#case.id"/>">Open Cases</a> |  <a href="case_assessments?callRequest.id=<s:property value="#request.id"/>&caseItem.id=<s:property value="#case.id"/>">Assesments</a></td>
                                         </tr>
-                                        <tr>
-                                            <th>Max container width</th>
-                                            <td>None (auto)</td>
-                                            <td>750px</td>
-                                            <td>970px</td>
-                                            <td>1170px</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Class prefix</th>
-                                            <td>
-                                                <code>.col-xs-</code>
-                                            </td>
-                                            <td>
-                                                <code>.col-sm-</code>
-                                            </td>
-                                            <td>
-                                                <code>.col-md-</code>
-                                            </td>
-                                            <td>
-                                                <code>.col-lg-</code>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th># of columns</th>
-                                            <td colspan="4">12</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Max column width</th>
-                                            <td class="text-muted">Auto</td>
-                                            <td>60px</td>
-                                            <td>78px</td>
-                                            <td>95px</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Gutter width</th>
-                                            <td colspan="4">30px (15px on each side of a column)</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Nestable</th>
-                                            <td colspan="4">Yes</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Offsets</th>
-                                            <td colspan="4">Yes</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Column ordering</th>
-                                            <td colspan="4">Yes</td>
-                                        </tr>
+                                        </s:iterator>
                                     </tbody>
                                 </table>
                             </div>

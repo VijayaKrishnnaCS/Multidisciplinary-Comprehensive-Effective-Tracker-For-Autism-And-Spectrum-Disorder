@@ -63,7 +63,7 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
+                                       <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th></th>
@@ -86,60 +86,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <s:iterator value="caseItemList" var="case">
                                         <tr>
-                                            <th>Grid behavior</th>
-                                            <td>Horizontal at all times</td>
-                                            <td colspan="3">Collapsed to start, horizontal above breakpoints</td>
+                                            <td><s:property value="#case.id"/></td>
+                                            <td><s:property value="#case.patient.name"/></td>
+                                            <td><s:property value="#case.callRequest.name"/></td>
+                                            <td><s:property value="#case.callRequest.phone"/></td>
+                                            <td><a href="edit_case?callRequest.id=<s:property value="#request.id"/>&caseItem.id=0">Create Case</a> | <a href="delete_request?callRequest.id=<s:property value="#request.id"/>">Delete</a></td>
                                         </tr>
-                                        <tr>
-                                            <th>Max container width</th>
-                                            <td>None (auto)</td>
-                                            <td>750px</td>
-                                            <td>970px</td>
-                                            <td>1170px</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Class prefix</th>
-                                            <td>
-                                                <code>.col-xs-</code>
-                                            </td>
-                                            <td>
-                                                <code>.col-sm-</code>
-                                            </td>
-                                            <td>
-                                                <code>.col-md-</code>
-                                            </td>
-                                            <td>
-                                                <code>.col-lg-</code>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th># of columns</th>
-                                            <td colspan="4">12</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Max column width</th>
-                                            <td class="text-muted">Auto</td>
-                                            <td>60px</td>
-                                            <td>78px</td>
-                                            <td>95px</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Gutter width</th>
-                                            <td colspan="4">30px (15px on each side of a column)</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Nestable</th>
-                                            <td colspan="4">Yes</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Offsets</th>
-                                            <td colspan="4">Yes</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Column ordering</th>
-                                            <td colspan="4">Yes</td>
-                                        </tr>
+                                        </s:iterator>
                                     </tbody>
                                 </table>
                             </div>

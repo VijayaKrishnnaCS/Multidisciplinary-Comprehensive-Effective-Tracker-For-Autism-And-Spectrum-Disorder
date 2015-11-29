@@ -39,6 +39,9 @@ public class CaseItem implements Serializable {
 	//bi-directional many-to-one association to EvaluationCriteria
 	@OneToMany(mappedBy="caseItem")
 	private List<EvaluationCriteria> evaluationCriterias;
+	
+	@OneToMany(mappedBy="caseItem")
+	private List<CPMA> cpMA;
 
 	//bi-directional many-to-one association to Illness
 	@OneToMany(mappedBy="caseItem")
@@ -137,6 +140,14 @@ public class CaseItem implements Serializable {
 		illness.setCase(null);
 
 		return illness;
+	}
+
+	public List<CPMA> getCpMA() {
+		return cpMA;
+	}
+
+	public void setCpMA(List<CPMA> cpMA) {
+		this.cpMA = cpMA;
 	}
 
 }
