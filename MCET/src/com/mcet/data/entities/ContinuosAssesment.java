@@ -20,11 +20,17 @@ public class ContinuosAssesment implements Serializable {
 
 	@Column(name="case_notes")
 	private String caseNotes;
+	
+	
+	private String rating;
 
 	//bi-directional many-to-one association to TreatmentPlan
 	@ManyToOne
 	@JoinColumn(name="treatment_plan_id")
 	private TreatmentPlan treatmentPlan;
+	
+	@Column(name="creation_datetime")
+	private String creationDatetime;
 
 	public ContinuosAssesment() {
 	}
@@ -51,6 +57,22 @@ public class ContinuosAssesment implements Serializable {
 
 	public void setTreatmentPlan(TreatmentPlan treatmentPlan) {
 		this.treatmentPlan = treatmentPlan;
+	}
+
+	public String getRating() {
+		return rating;
+	}
+
+	public void setRating(String rating) {
+		this.rating = rating;
+	}
+
+	public String getCreationDatetime() {
+		return creationDatetime;
+	}
+
+	public void setCreationDatetime(String creationDatetime) {
+		this.creationDatetime = creationDatetime;
 	}
 
 }

@@ -29,6 +29,30 @@
       <action name="edit_case" class="com.mcet.action.Cases" method="edit">
        	   <result name="CASE_EDIT">server/case_edit.jsp</result>
       </action>
+      <action name="save_case" class="com.mcet.action.Cases" method="saveCase">
+       	   <result name="CASE_EDIT">server/case_edit.jsp</result>
+      </action>
+     <action name="case_assessments" class="com.mcet.action.Cases" method="caseAssessments">
+       	   <result name="EVAL_LIST">server/eval_list.jsp</result>
+      </action>
+       <action name="case_treatment" class="com.mcet.action.Treatments">
+       	   <result name="ASSES_list">server/assesment_list.jsp</result>
+      </action>
+      <action name="save_treatment" class="com.mcet.action.Treatments" method="saveTreatment">
+       	   <result name="ASSES_list" type="redirect">case_treatment?evalCritO.id=${treatmentPlan.evaluationCriteria.id}</result>
+      </action>
+        <action name="treatment_progress" class="com.mcet.action.Treatments" method="treatmentProgress">
+       	   <result name="TREATMENT_REPORT">server/treatment_report.jsp</result>
+      </action>
+      <action name="save_cont_assess" class="com.mcet.action.Treatments" method="saveContAssessment">
+       	   <result name="TREATMENT_REPORT" type="redirect">treatment_progress?treatmentPlan.id=${contAssess.treatmentPlan.id}</result>
+      </action>
+      <action name="save_trt_assess" class="com.mcet.action.Treatments" method="saveTreatmentAssessment">
+       	   <result name="TREATMENT_REPORT" type="redirect">treatment_progress?treatmentPlan.id=${trtmntAssess.treatmentPlan.id}</result>
+      </action>
+      <action name="request_a_call" class="com.mcet.action.RequestCall" method="submitCallRequest">
+       	   <result name="SUCCESS" type="redirect">request_call?msg=success</result>
+      </action>
     </package>
     
 </struts>

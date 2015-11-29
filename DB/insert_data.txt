@@ -1,0 +1,46 @@
+INSERT INTO `swabhimaan`.`call_requests` (`name`, `phone`, `email`, `message`, `creation_datetime`, `updation_datetime`) VALUES ('Kiran', '298347933', 'ads@as.com', 'hass dsfds  sdfsfs', '2015-11-29', '2015-11-29');
+
+INSERT INTO `swabhimaan`.`call_requests` (`name`, `phone`, `email`, `message`, `creation_datetime`, `updation_datetime`) VALUES ('Rama', '3428374892', 'sdf@sfdf.com', 'sadfh jshdfj ahsdfkj jkhdf', '2015-11-29 00:00:00', '2015-11-29 00:00:00');
+
+INSERT INTO `swabhimaan`.`patient` (`first_name`, `last_name`, `age`, `gender`, `dob`, `address`, `height_in_inches`, `weight_in_kgs`, `creation_datetime`, `updation_datetime`) VALUES ('hari', 'kishore', '8', 'm', '2012-11-29', 'dsjf hlkasdhf sdfhkasjhf, asdjflksadjf l, Chennai', '26', '24', '2015-11-29', '2015-11-29');
+INSERT INTO `swabhimaan`.`patient` (`first_name`, `last_name`, `age`, `gender`, `dob`, `address`, `height_in_inches`, `weight_in_kgs`, `creation_datetime`, `updation_datetime`) VALUES ('munni', 'priya', '8', 'f', '2011-11-29', 'dsjf hlkasdhf sdfhkasjhf, asdjflksadjf l, Chennai', '26', '24', '2015-11-29', '2015-11-29');
+
+
+INSERT INTO `swabhimaan`.`patient_rel` (`first_name`, `last_name`, `relation`, `mobile`, `Address`, `email`, `patient_id`, `creation_datetime`, `updation_datetime`) VALUES ('Harinath', 'G', 'father', '2343247388', 'lsdkf klkhsdfk ssdjfhj , CHennai', 'dsf@ga.com', '1', '2015-11-29', '2015-11-29');
+
+INSERT INTO `swabhimaan`.`patient_rel` (`first_name`, `last_name`, `relation`, `mobile`, `Address`, `email`, `patient_id`, `creation_datetime`, `updation_datetime`) VALUES ('Sarvani', 'Priya', 'mother', '2343247388', 'lsdkf klkhsdfk ssdjfhj , CHennai', 'dsf@ga.com', '1', '2015-11-29', '2015-11-29');
+
+
+INSERT INTO `swabhimaan`.`case_item` (`symptoms`, `call_requests_id`, `patient_id`, `diagnosedWith`, `creation_datetime`, `updation_datetime`) VALUES ('kladsjf lmsadnflk sdlkflkajsdlkfj lks', '1', '1', 'Autism', '2015-11-29', '2015-11-29');
+INSERT INTO `swabhimaan`.`case_item` (`symptoms`, `call_requests_id`, `patient_id`, `diagnosedWith`, `creation_datetime`, `updation_datetime`) VALUES ('sdjflksadjf klkalj lkjsadlkfj lks', '2', '2', 'Autism', '2015-11-29', '2015-11-29');
+
+
+INSERT INTO `swabhimaan`.`department` (`name`) VALUES ('Medicine');
+INSERT INTO `swabhimaan`.`department` (`name`) VALUES ('Yoga');
+INSERT INTO `swabhimaan`.`department` (`name`) VALUES ('External Therapies');
+INSERT INTO `swabhimaan`.`department` (`name`) VALUES ('Nutrition and Dietetics');
+INSERT INTO `swabhimaan`.`department` (`name`) VALUES ('Occupational Therapy');
+INSERT INTO `swabhimaan`.`department` (`name`) VALUES ('Special Education');
+INSERT INTO `swabhimaan`.`department` (`name`) VALUES ('Sports');
+INSERT INTO `swabhimaan`.`department` (`name`) VALUES ('Speech Language pathology');
+
+INSERT INTO `swabhimaan`.`treatment_plan` (`duration_in_days`, `status`, `department_id`, `creation_datetime`, `updation_datetime`, `case_item_id`) VALUES ('180', 'InProgress', '2', '2015-11-30', '2015-11-30', '1');
+INSERT INTO `swabhimaan`.`treatment_plan` (`duration_in_days`, `status`, `department_id`, `creation_datetime`, `updation_datetime`, `case_item_id`) VALUES ('365', 'InProgress', '6', '2015-11-30', '2015-11-30', '1');
+INSERT INTO `swabhimaan`.`treatment_plan` (`duration_in_days`, `status`, `department_id`, `creation_datetime`, `updation_datetime`, `case_item_id`) VALUES ('365', 'InProgress', '5', '2015-11-30', '2015-11-30', '1');
+INSERT INTO `swabhimaan`.`treatment_plan` (`duration_in_days`, `status`, `department_id`, `creation_datetime`, `updation_datetime`, `case_item_id`) VALUES ('180', 'InProgress', '1', '2015-12-10', '2015-12-10', '2');
+INSERT INTO `swabhimaan`.`treatment_plan` (`duration_in_days`, `status`, `department_id`, `creation_datetime`, `updation_datetime`, `case_item_id`) VALUES ('180', 'InProgress', '5', '2015-12-15', '2015-12-15', '2');
+INSERT INTO `swabhimaan`.`treatment_plan` (`duration_in_days`, `status`, `department_id`, `creation_datetime`, `updation_datetime`, `case_item_id`) VALUES ('180', 'InProgress', '3', '2015-12-15', '2015-12-15', '2');
+
+INSERT INTO `swabhimaan`.`treatment_assessment` (`assessed_from`, `rating`, `treatment_plan_id`, `creation_datetime`, `updation_datetime`) VALUES ('DEPT', '2', '1', '2016-02-29', '2016-02-29');
+INSERT INTO `swabhimaan`.`treatment_assessment` (`assessed_from`, `rating`, `treatment_plan_id`, `creation_datetime`, `updation_datetime`) VALUES ('DEPT', '3', '2', '2016-05-29', '2016-05-29');
+INSERT INTO `swabhimaan`.`treatment_assessment` (`assessed_from`, `rating`, `treatment_plan_id`, `creation_datetime`, `updation_datetime`) VALUES ('DEPT', '4', '3', '2016-09-29', '2016-09-29');
+INSERT INTO `swabhimaan`.`treatment_assessment` (`assessed_from`, `rating`, `treatment_plan_id`, `creation_datetime`, `updation_datetime`) VALUES ('DEPT', '4', '4', '2016-02-29', '2016-02-29');
+INSERT INTO `swabhimaan`.`treatment_assessment` (`assessed_from`, `rating`, `treatment_plan_id`, `creation_datetime`, `updation_datetime`) VALUES ('DEPT', '5', '5', '2016-05-29', '2016-05-29');
+INSERT INTO `swabhimaan`.`treatment_assessment` (`assessed_from`, `rating`, `treatment_plan_id`, `creation_datetime`, `updation_datetime`) VALUES ('DEPT', '5', '6', '2016-09-29', '2016-02-29');
+
+UPDATE `swabhimaan`.`treatment_plan` SET `parentRating`='4', `deptRating`='3' WHERE `id`='1';
+UPDATE `swabhimaan`.`treatment_plan` SET `parentRating`='3', `deptRating`='2' WHERE `id`='2';
+UPDATE `swabhimaan`.`treatment_plan` SET `parentRating`='4', `deptRating`='3' WHERE `id`='3';
+UPDATE `swabhimaan`.`treatment_plan` SET `parentRating`='3', `deptRating`='3' WHERE `id`='4';
+UPDATE `swabhimaan`.`treatment_plan` SET `parentRating`='2', `deptRating`='3' WHERE `id`='5';
+UPDATE `swabhimaan`.`treatment_plan` SET `parentRating`='5', `deptRating`='5' WHERE `id`='6';

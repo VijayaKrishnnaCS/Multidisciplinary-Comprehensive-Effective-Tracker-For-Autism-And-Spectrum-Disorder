@@ -67,22 +67,18 @@
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th></th>
+                                            <th>Name</th>
                                             <th>
-                                                Extra small devices
-                                                <small>Phones (&lt;768px)</small>
+                                                Phone
                                             </th>
                                             <th>
-                                                Small devices
-                                                <small>Tablets (&ge;768px)</small>
+                                                Email
                                             </th>
                                             <th>
-                                                Medium devices
-                                                <small>Desktops (&ge;992px)</small>
+                                                Message
                                             </th>
                                             <th>
-                                                Large devices
-                                                <small>Desktops (&ge;1200px)</small>
+                                               
                                             </th>
                                         </tr>
                                     </thead>
@@ -93,7 +89,7 @@
                                             <td><s:property value="#request.phone"/></td>
                                             <td><s:property value="#request.email"/></td>
                                             <td><s:property value="#request.message"/></td>
-                                            <td><a href="delete_request?callRequest.id=<s:property value="#request.id"/>">Delete</a></td>
+                                            <td><a href="edit_case?callRequest.id=<s:property value="#request.id"/>&caseItem.id=0">Create Case</a> | <a href="delete_request?callRequest.id=<s:property value="#request.id"/>">Delete</a></td>
                                         </tr>
                                         </s:iterator>
                                     </tbody>

@@ -37,8 +37,8 @@ public class TreatmentPlan implements Serializable {
 	private EvaluationCriteria evaluationCriteria;
 
 	//bi-directional many-to-one association to Department
-	@ManyToOne
-	private Department department;
+	@Column(name="department_id")
+	private String department;
 
 	public TreatmentPlan() {
 	}
@@ -119,11 +119,11 @@ public class TreatmentPlan implements Serializable {
 		this.evaluationCriteria = evaluationCriteria;
 	}
 
-	public Department getDepartment() {
+	public String getDepartment() {
 		return this.department;
 	}
 
-	public void setDepartment(Department department) {
+	public void setDepartment(String department) {
 		this.department = department;
 	}
 

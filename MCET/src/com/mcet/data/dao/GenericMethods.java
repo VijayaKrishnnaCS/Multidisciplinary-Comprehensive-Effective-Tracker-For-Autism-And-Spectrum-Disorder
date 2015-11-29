@@ -50,7 +50,7 @@ public class GenericMethods {
 	@SuppressWarnings("rawtypes")
 	public Object findById(int iD,Class className) {
 		 Object searchedObject=(Object)session.createCriteria(className).add(Restrictions.eq("id",iD)).uniqueResult();
-		 session.close();
+		 //session.close();
 		 return searchedObject;
 	}
 	public void delete(){
@@ -89,8 +89,11 @@ public class GenericMethods {
 	}
 	public int getRowCount(String queryString)
 	{
+		Transaction t=session.getTransaction();
+	    t.begin();
 		int count = ((Long)session.createQuery(queryString).uniqueResult()).intValue();
-		session.close();
+		t.commit();	  
+	    session.close();
 		return count;
 	}
 }
