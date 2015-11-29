@@ -1,0 +1,214 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema swabhimaan
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `swabhimaan` ;
+CREATE SCHEMA IF NOT EXISTS `swabhimaan` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `swabhimaan` ;
+
+-- -----------------------------------------------------
+-- Table `swabhimaan`.`call_requests`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `swabhimaan`.`call_requests` ;
+
+CREATE TABLE IF NOT EXISTS `swabhimaan`.`call_requests` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NULL,
+  `phone` VARCHAR(45) NULL,
+  `email` MEDIUMTEXT NULL,
+  `message` MEDIUMTEXT NULL,
+  `creation_datetime` DATETIME NULL,
+  `updation_datetime` DATETIME NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `swabhimaan`.`patient`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `swabhimaan`.`patient` ;
+
+CREATE TABLE IF NOT EXISTS `swabhimaan`.`patient` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(64) NULL,
+  `last_name` VARCHAR(64) NULL,
+  `age` INT NULL,
+  `gender` VARCHAR(8) NULL,
+  `dob` DATE NULL,
+  `address` VARCHAR(512) NULL,
+  `height_in_inches` INT NULL,
+  `weight_in_kgs` INT NULL,
+  `creation_datetime` DATETIME NULL,
+  `updation_datetime` DATETIME NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `swabhimaan`.`case_item`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `swabhimaan`.`case_item` ;
+
+CREATE TABLE IF NOT EXISTS `swabhimaan`.`case_item` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `symptoms` MEDIUMTEXT NULL,
+  `call_requests_id` INT NOT NULL,
+  `patient_id` INT NOT NULL,
+  `diagnosedWith` VARCHAR(45) NULL,
+  `resolutionNotes` VARCHAR(256) NULL,
+  `creation_datetime` DATETIME NULL,
+  `updation_datetime` DATETIME NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Case_call_requests1_idx` (`call_requests_id` ASC),
+  INDEX `fk_Case_Patient1_idx` (`patient_id` ASC),
+  CONSTRAINT `fk_Case_call_requests1`
+    FOREIGN KEY (`call_requests_id`)
+    REFERENCES `swabhimaan`.`call_requests` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Case_Patient1`
+    FOREIGN KEY (`patient_id`)
+    REFERENCES `swabhimaan`.`patient` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `swabhimaan`.`department`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `swabhimaan`.`department` ;
+
+CREATE TABLE IF NOT EXISTS `swabhimaan`.`department` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(64) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `swabhimaan`.`treatment_plan`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `swabhimaan`.`treatment_plan` ;
+
+CREATE TABLE IF NOT EXISTS `swabhimaan`.`treatment_plan` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `duration_in_days` INT NULL,
+  `status` VARCHAR(32) NULL,
+  `department_id` INT NOT NULL,
+  `creation_datetime` DATETIME NULL,
+  `updation_datetime` DATETIME NULL,
+  `case_item_id` INT NOT NULL,
+  `parentRating` INT NULL,
+  `deptRating` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_TreatmentPlan_department1_idx` (`department_id` ASC),
+  INDEX `fk_treatment_plan_case_item1_idx` (`case_item_id` ASC),
+  CONSTRAINT `fk_TreatmentPlan_department1`
+    FOREIGN KEY (`department_id`)
+    REFERENCES `swabhimaan`.`department` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_treatment_plan_case_item1`
+    FOREIGN KEY (`case_item_id`)
+    REFERENCES `swabhimaan`.`case_item` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `swabhimaan`.`patient_rel`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `swabhimaan`.`patient_rel` ;
+
+CREATE TABLE IF NOT EXISTS `swabhimaan`.`patient_rel` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(64) NULL,
+  `last_name` VARCHAR(64) NULL,
+  `relation` VARCHAR(16) NULL,
+  `mobile` VARCHAR(16) NULL,
+  `Address` VARCHAR(512) NULL,
+  `email` MEDIUMTEXT NULL,
+  `patient_id` INT NOT NULL,
+  `creation_datetime` DATETIME NULL,
+  `updation_datetime` DATETIME NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_patient_rel_Patient1_idx` (`patient_id` ASC),
+  CONSTRAINT `fk_patient_rel_Patient1`
+    FOREIGN KEY (`patient_id`)
+    REFERENCES `swabhimaan`.`patient` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `swabhimaan`.`illness`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `swabhimaan`.`illness` ;
+
+CREATE TABLE IF NOT EXISTS `swabhimaan`.`illness` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `case_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_illness_Case1_idx` (`case_id` ASC),
+  CONSTRAINT `fk_illness_Case1`
+    FOREIGN KEY (`case_id`)
+    REFERENCES `swabhimaan`.`case_item` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `swabhimaan`.`continuos_assesment`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `swabhimaan`.`continuos_assesment` ;
+
+CREATE TABLE IF NOT EXISTS `swabhimaan`.`continuos_assesment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `case_notes` VARCHAR(45) NULL,
+  `treatment_plan_id` INT NOT NULL,
+  `creation_datetime` VARCHAR(45) NULL,
+  `updation_datetime` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_continuos_assesment_TreatmentPlan1_idx` (`treatment_plan_id` ASC),
+  CONSTRAINT `fk_continuos_assesment_TreatmentPlan1`
+    FOREIGN KEY (`treatment_plan_id`)
+    REFERENCES `swabhimaan`.`treatment_plan` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `swabhimaan`.`treatment_assessment`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `swabhimaan`.`treatment_assessment` ;
+
+CREATE TABLE IF NOT EXISTS `swabhimaan`.`treatment_assessment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `assessed_from` VARCHAR(32) NULL,
+  `rating` INT NULL,
+  `assessment_notes` VARCHAR(256) NULL,
+  `treatment_plan_id` INT NOT NULL,
+  `creation_datetime` DATETIME NULL,
+  `updation_datetime` DATETIME NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_treatment_assessment_treatment_plan1_idx` (`treatment_plan_id` ASC),
+  CONSTRAINT `fk_treatment_assessment_treatment_plan1`
+    FOREIGN KEY (`treatment_plan_id`)
+    REFERENCES `swabhimaan`.`treatment_plan` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
