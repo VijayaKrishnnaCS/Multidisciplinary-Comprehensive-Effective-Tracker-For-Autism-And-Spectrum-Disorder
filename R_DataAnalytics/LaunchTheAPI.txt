@@ -1,0 +1,12 @@
+setwd("C:/Users/nkaluthekkalansa/Documents/Research And Development/Machine Learning/Expose API")
+library(plumber)
+r <- plumb("WordCloud_Referbursh.R")
+r$run(port=8000)
+
+
+Sample :-
+http://localhost:8000/mean?samples=10000
+http://localhost:8000/getImage
+
+
+setwd("C:/Users/nkaluthekkalansa/Documents/Research And Development/Machine Learning/Swabhiman")

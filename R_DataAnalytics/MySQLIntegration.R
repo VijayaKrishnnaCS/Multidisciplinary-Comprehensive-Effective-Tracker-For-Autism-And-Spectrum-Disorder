@@ -1,0 +1,10 @@
+library(RMySQL)
+mydb = dbConnect(MySQL(), user='root', password='pass', dbname='swabhimaan', host='localhost')
+dbListTables(mydb)
+dbListFields(mydb, 'treatment_assessment')
+rs = dbSendQuery(mydb, "select assessment_notes from swabhimaan.treatment_assessment")
+data = fetch(rs, n=-1)
+fileConn<-file("C:/Users/nkaluthekkalansa/Documents/Research And Development/Machine Learning/Swabhiman/lords.txt")
+writeLines(as.character(data), fileConn)
+close(fileConn)
+#data
